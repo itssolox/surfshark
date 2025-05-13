@@ -1,0 +1,126 @@
+{
+  "618546654": {
+    "id": 618546654,
+    "referredBy": "6994528708",
+    "referrals": [],
+    "points": 0,
+    "joinedChannel": true
+  },
+  "2107726307": {
+    "id": 2107726307,
+    "referredBy": "6994528708",
+    "referrals": [],
+    "points": 0,
+    "joinedChannel": true
+  },
+  "6994528708": {
+    "id": 6994528708,
+    "referredBy": null,
+    "referrals": [
+      6451557578,
+      6652115674,
+      6614111845,
+      7428990106,
+      6730377841,
+      618546654,
+      5010778910,
+      7306058394,
+      7938145368,
+      2107726307
+    ],
+    "points": 0,
+    "joinedChannel": true
+  },
+  "6451557578": {
+    "id": 6451557578,
+    "referredBy": "6994528708",
+    "referrals": [],
+    "points": 0,
+    "joinedChannel": true
+  },
+  "8011959413": {
+    "id": 8011959413,
+    "referredBy": null,
+    "referrals": [],
+    "points": 0,
+    "joinedChannel": true
+  },
+  "6652115674": {
+    "id": 6652115674,
+    "referredBy": "6994528708",
+    "referrals": [
+      7002062654,
+      7878641930,
+      6283022978
+    ],
+    "points": 0,
+    "joinedChannel": true
+  },
+  "6614111845": {
+    "id": 6614111845,
+    "referredBy": "6994528708",
+    "referrals": [],
+    "points": 0,
+    "joinedChannel": true
+  },
+  "6730377841": {
+    "id": 6730377841,
+    "referredBy": "6994528708",
+    "referrals": [],
+    "points": 0,
+    "joinedChannel": true
+  },
+  "7428990106": {
+    "id": 7428990106,
+    "referredBy": "6994528708",
+    "referrals": [],
+    "points": 0,
+    "joinedChannel": true
+  },
+  "7002062654": {
+    "id": 7002062654,
+    "referredBy": "6652115674",
+    "referrals": [],
+    "points": 0,
+    "joinedChannel": true
+  },
+  "7878641930": {
+    "id": 7878641930,
+    "referredBy": "6652115674",
+    "referrals": [],
+    "points": 0,
+    "joinedChannel": true
+  },
+  "6283022978": {
+    "id": 6283022978,
+    "referredBy": "6652115674",
+    "referrals": [],
+    "points": 0,
+    "joinedChannel": true
+  },
+  "5010778910": {
+    "joinedChannel": true,
+    "referredBy": "6994528708"
+  },
+  "7306058394": {
+    "id": 7306058394,
+    "referredBy": "6994528708",
+    "referrals": [],
+    "points": 0,
+    "joinedChannel": true
+  },
+  "7938145368": {
+    "id": 7938145368,
+    "referredBy": "6994528708",
+    "referrals": [],
+    "points": 0,
+    "joinedChannel": true
+  },
+  "7863737666": {
+    "id": 7863737666,
+    "referredBy": "6994528708",
+    "referrals": [],
+    "points": 0,
+    "joinedChannel": false
+  }
+}
