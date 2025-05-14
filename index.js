@@ -47,6 +47,13 @@ function getUser(userId) {
     };
     saveUsers(users);
   }
+  
+  // Ensure referrals is always an array
+  if (!users[userId].referrals) {
+    users[userId].referrals = [];
+    saveUsers(users);
+  }
+  
   return users[userId];
 }
 
@@ -117,9 +124,20 @@ bot.action('check_membership', async (ctx) => {
   if (isMember) {
     const user = getUser(userId);
     
+    // Ensure referrals exists and is an array
+    if (!user.referrals) {
+      user.referrals = [];
+      updateUser(userId, { referrals: [] });
+    }
+    
     // If user was referred by someone, credit the referrer
     if (user.referredBy) {
       const referrer = getUser(user.referredBy);
+      
+      // Ensure referrer's referrals exists and is an array
+      if (!referrer.referrals) {
+        referrer.referrals = [];
+      }
       
       // Only add if not already in the list
       if (!referrer.referrals.includes(userId)) {
@@ -184,6 +202,12 @@ bot.hears('👥 Refer Friends', async (ctx) => {
   const botInfo = await bot.telegram.getMe();
   const referralLink = `https://t.me/${botInfo.username}?start=${userId}`;
   
+  // Ensure referrals exists and is an array
+  if (!user.referrals) {
+    user.referrals = [];
+    updateUser(userId, { referrals: [] });
+  }
+  
   await ctx.replyWithHTML(
     `🔗 <b>Your Referral Link</b> 🔗\n\n` +
     `Share this link with your friends:\n` +
@@ -215,6 +239,12 @@ bot.hears('🔢 My Points', async (ctx) => {
   }
   
   const user = getUser(userId);
+  
+  // Ensure referrals exists and is an array
+  if (!user.referrals) {
+    user.referrals = [];
+    updateUser(userId, { referrals: [] });
+  }
   
   await ctx.replyWithHTML(
     `📊 <b>Your Stats</b> 📊\n\n` +
@@ -294,6 +324,30 @@ bot.command('broadcast', async (ctx) => {
   await ctx.reply(`📢 Broadcast sent!\n✅ Successful: ${sentCount}\n❌ Failed: ${failedCount}`);
 });
 
+// Add data recovery middleware
+bot.use(async (ctx, next) => {
+  try {
+    // Make sure user data is properly initialized before proceeding
+    if (ctx.from && ctx.from.id) {
+      const user = getUser(ctx.from.id);
+      
+      // Ensure critical properties exist
+      if (!user.referrals) {
+        updateUser(ctx.from.id, { referrals: [] });
+      }
+      
+      if (user.points === undefined || user.points === null) {
+        updateUser(ctx.from.id, { points: 0 });
+      }
+    }
+    
+    return next();
+  } catch (error) {
+    console.error('Error in data recovery middleware:', error);
+    return next();
+  }
+});
+
 // Middleware to handle all messages
 bot.on('message', async (ctx, next) => {
   if (ctx.message.text && !ctx.message.text.startsWith('/')) {
@@ -319,6 +373,17 @@ bot.on('message', async (ctx, next) => {
 // Error handling
 bot.catch((err, ctx) => {
   console.error(`Error for ${ctx.updateType}:`, err);
+  
+  // Try to recover and notify the user that something went wrong
+  try {
+    if (ctx && ctx.reply) {
+      ctx.reply('Sorry, something went wrong. Please try again later.').catch(e => {
+        console.error('Failed to send error message to user:', e);
+      });
+    }
+  } catch (replyError) {
+    console.error('Failed to handle error properly:', replyError);
+  }
 });
 
 // Start bot
