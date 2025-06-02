@@ -4,8 +4,8 @@ const fs = require('fs');
 // Bot configuration
 const token = '7907410427:AAFeY5uMx7kUJW9csR9ts17blBfmMIizoKU';
 const bot = new Telegraf(token);
-const channelId = -1002508047613
-const channelUsername = 'https://t.me/+eSmVlY8za7NiOGNl';
+const channelId = -1002658211908
+const channelUsername = 'https://t.me/+nxkG_bA_-9o0YmM1';
 const ownerId = 6994528708;
 
 // Database file
