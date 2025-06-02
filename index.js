@@ -2,10 +2,10 @@ const { Telegraf, Markup } = require('telegraf');
 const fs = require('fs');
 
 // Bot configuration
-const token = '7907410427:AAFeY5uMx7kUJW9csR9ts17blBfmMIizoKU';
+const token = '7907410427:AAFeY5csR9ts17blBfmMIizoKU';
 const bot = new Telegraf(token);
 const channelId = -1002658211908
-const channelUsername = 'https://t.me/+nxkG_bA_-9o0YmM1';
+const channelUsername = 'https://A_-9o0YmM1';
 const ownerId = 6994528708;
 
 // Database file
